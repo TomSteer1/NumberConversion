@@ -93,93 +93,91 @@ public class Main extends Application {
         stage.setTitle("Number Conversion");
         stage.getIcons().add(new Image("https://pbs.twimg.com/media/EKM9pjTVAAIudzZ.jpg"));
         GridPane root = new GridPane();
+        GridPane buttons = new GridPane();
         root.setAlignment(Pos.CENTER);
         root.setHgap(10);
         root.setVgap(10);
+        buttons.setAlignment(Pos.CENTER);
+        buttons.setHgap(10);
+        buttons.setVgap(10);
+        buttons.getStylesheets().add("stylesheet.css");
         root.setBackground(new Background(new BackgroundImage(new Image("https://pbs.twimg.com/media/EKM9pjTVAAIudzZ.jpg",500,500,false,true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT)));
-
+        Text inputInfo = new Text("Input: ");
+            inputInfo.setFont(Font.font("Comic Sans MS",20));
+            root.add(inputInfo,0,0);
+        TextField input = new TextField();
+            input.setFont(Font.font("Comic Sans MS",20));
+            root.add(input,1,0);
         Text outputInfo = new Text("Output: ");
-        root.add(outputInfo,0,7);
-        Text output = new Text();
-        root.add(output,1,7);
-        outputInfo.setFont(Font.font("Comic Sans MS",20));
-        outputInfo.setFill(Color.WHITE);
-        output.setFont(Font.font("Comic Sans MS",20));
-        output.setFill(Color.WHITE);
+            outputInfo.setFont(Font.font("Comic Sans MS",20));
+            root.add(outputInfo,0,1);
+        TextField output = new TextField();
+            output.setFont(Font.font("Comic Sans MS",20));
+            root.add(output,1,1);
 
-        TextField bTOdINPUT = new TextField();
-        root.add(bTOdINPUT,0,1);
+
         Button bTOd = new Button("Binary to Denary");
+        buttons.add(bTOd,0,0);
         bTOd.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String number = Integer.toString(binaryToDenary(bTOdINPUT.getText()));
+                String number = Integer.toString(binaryToDenary(input.getText()));
                 output.setText(number);
             }
         });
 
-
-
-        root.add(bTOd,1,1);
-
-        TextField bTOhINPUT = new TextField();
-        root.add(bTOhINPUT,0,2);
         Button bTOh = new Button("Binary to Hex");
-        root.add(bTOh,1,2);
+        buttons.add(bTOh,1,0);
         bTOh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                output.setText(binaryToHex(bTOhINPUT.getText()));
+                output.setText(binaryToHex(input.getText()));
             }
         });
 
 
-        TextField dTObINPUT = new TextField();
-        root.add(dTObINPUT,0,3);
+
         Button dTOb = new Button("Denary to Binary");
-        root.add(dTOb,1,3);
+        buttons.add(dTOb,0,1);
         dTOb.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                output.setText(denaryToBinary(Integer.parseInt(dTObINPUT.getText())));
+                output.setText(denaryToBinary(Integer.parseInt(input.getText())));
             }
         });
 
-        TextField dTOhINPUT = new TextField();
-        root.add(dTOhINPUT,0,4);
+
         Button dTOh = new Button("Denary to Hex");
-        root.add(dTOh,1,4);
+        buttons.add(dTOh,1,1);
         dTOh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                output.setText(denaryToHex(Integer.parseInt(dTOhINPUT.getText())));
+                output.setText(denaryToHex(Integer.parseInt(input.getText())));
             }
         });
 
-        TextField hTObINPUT = new TextField();
-        root.add(hTObINPUT,0,5);
+
         Button hTOb = new Button("Hex to Binary");
-        root.add(hTOb,1,5);
+        buttons.add(hTOb,0,2);
         hTOb.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                output.setText(hexToBinary(hTObINPUT.getText()));
+                output.setText(hexToBinary(input.getText()));
             }
         });
 
-        TextField hTOdINPUT = new TextField();
-        root.add(hTOdINPUT,0,6);
+
         Button hTOd = new Button("Hex to Denary");
-        root.add(hTOd,1,6);
+        buttons.add(hTOd,1,2);
         hTOd.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                output.setText(Integer.toString(hexToDenary(hTOdINPUT.getText())));
+                output.setText(Integer.toString(hexToDenary(input.getText())));
             }
         });
 
-
+        root.add(buttons,1,3);
 
 
         stage.setScene(new Scene(root,500,500));
