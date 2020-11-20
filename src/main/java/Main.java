@@ -91,6 +91,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Number Conversion");
+        stage.getIcons().add(new Image("https://pbs.twimg.com/media/EKM9pjTVAAIudzZ.jpg"));
         GridPane root = new GridPane();
         root.setAlignment(Pos.CENTER);
         root.setHgap(10);
