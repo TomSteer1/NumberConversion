@@ -1,7 +1,10 @@
 
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
 import javafx.application.Application;
@@ -10,10 +13,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
     public static Integer binaryToDenary(String binary){
         int denary = 0;
         for(int i=binary.length(); i!=0;i--){
@@ -45,6 +48,9 @@ public class Main extends Application {
 
     public static String binaryToHex(String binary){
         String hex = "";
+        while(binary.length()%4 != 0){
+            binary = "0" + binary;
+        }
         String[] nibbles = {"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
         String[] hexValues = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
         for(int i=0;i<binary.length();i+=4){
@@ -80,12 +86,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
-//        System.out.println(binaryToDenary("10101111"));
-//        System.out.println(denaryToBinary(8));
-//        System.out.println(binaryToHex("10101111"));
-//        System.out.println(hexToBinary("AF"));
-//        System.out.println(hexToDenary("AF"));
-//        System.out.println(denaryToHex(175));
     }
 
     @Override
@@ -95,9 +95,17 @@ public class Main extends Application {
         root.setAlignment(Pos.CENTER);
         root.setHgap(10);
         root.setVgap(10);
-        Text output = new Text();
-        root.add(output,0,7);
+        root.setBackground(new Background(new BackgroundImage(new Image("https://pbs.twimg.com/media/EKM9pjTVAAIudzZ.jpg",500,500,false,true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT)));
 
+        Text outputInfo = new Text("Output: ");
+        root.add(outputInfo,0,7);
+        Text output = new Text();
+        root.add(output,1,7);
+        outputInfo.setFont(Font.font("Comic Sans MS",20));
+        outputInfo.setFill(Color.WHITE);
+        output.setFont(Font.font("Comic Sans MS",20));
+        output.setFill(Color.WHITE);
 
         TextField bTOdINPUT = new TextField();
         root.add(bTOdINPUT,0,1);
