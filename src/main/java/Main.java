@@ -28,7 +28,9 @@ public class Main extends Application {
     public static String denaryToBinary(int denary){
         String binary = "";
         int power = 2;
-        while(power*2 < denary){
+        System.out.println(denary);
+        while(power*2 <= denary){
+            System.out.println(power);
             power *= 2;
         }
         while(power > 0){
